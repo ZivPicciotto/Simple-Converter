@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.text.DecimalFormat;
+
 public class Main extends Application{
     public static void main(String[] args) {
         launch(args);
@@ -15,7 +17,6 @@ public class Main extends Application{
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Simple Converter");
-
     //Scene 1 - Weight
         //New Border Pane
         BorderPane border = new BorderPane();
@@ -165,35 +166,35 @@ public class Main extends Application{
         //Buttons functionality
         convertMeter.setOnAction(e -> {
             try{
-                double val = Double.parseDouble(kg.getText());
-                lbs.setText("" + (val*2.2046));
-                grams.setText(""+ (val*1000));
+                double val = Double.parseDouble(meter.getText());
+                feet.setText("" + (val*3.2808399));
+                centimeter.setText(""+ (val*100));
             }catch(Exception NotANumber){
-                kg.setText("Error: Not a real number");
-                lbs.clear();
-                grams.clear();
+                meter.setText("Error: Not a real number");
+                centimeter.clear();
+                feet.clear();
             }
         });
         convertCm.setOnAction(e -> {
             try{
-                double val = Double.parseDouble(lbs.getText());
-                kg.setText("" + (val*0.45359237));
-                grams.setText(""+ (val*0.45359237*1000));
+                double val = Double.parseDouble(centimeter.getText());
+                meter.setText("" + (val/100));
+                feet.setText(""+ (val/100*3.2808399));
             }catch(Exception NotANumber){
-                lbs.setText("Error: Not a real number");
-                kg.clear();
-                grams.clear();
+                centimeter.setText("Error: Not a real number");
+                feet.clear();
+                meter.clear();
             }
         });
         convertFt.setOnAction(e -> {
             try{
-                double val = Double.parseDouble(grams.getText());
-                lbs.setText("" + ((val/1000)*0.45359237));
-                kg.setText(""+ (val/1000));
+                double val = Double.parseDouble(feet.getText());
+                meter.setText("" + (val*0.3048));
+                centimeter.setText(""+ (val*0.3048*100));
             }catch(Exception NotANumber){
-                grams.setText("Error: Not a real number");
-                lbs.clear();
-                kg.clear();
+                feet.setText("Error: Not a real number");
+                meter.clear();
+                centimeter.clear();
             }
         });
 
